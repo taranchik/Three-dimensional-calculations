@@ -9,7 +9,7 @@ def threedim_plot(title, dataY):
     groups = ("start", "3 month", "6 month")
     colors = ("red", "green", "blue")
 
-    fig = plt.figure()
+    fig = plt.figure(figsize=(16.0, 8.0))
     ax = plt.axes(projection='3d')
 
     ax.set_xlabel('X Label')
@@ -25,8 +25,8 @@ def threedim_plot(title, dataY):
 
     ax.view_init(30, 0)
 
-    plt.savefig('./src/img/' + title + '.png', bbox_inches='tight')
-    # plt.show()
+    # plt.savefig('./src/img/' + title + '.png', bbox_inches='tight')
+    plt.show()
 
 
 def read_xlsx(path):
