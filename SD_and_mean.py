@@ -34,15 +34,15 @@ def threedimSD(threedimlist):
     return (sum(squareddistances)/float(len(squareddistances)) ** 0.5)
 
 
-lineone = threedim(1, 1, 1)
-linetwo = threedim(1, 1, 0.5)
-linethree = threedim(0, 0, 0)
-linefour = threedim(0.5, 0.5, 0.5)
+# lineone = threedim(1, 1, 1)
+# linetwo = threedim(1, 1, 0.5)
+# linethree = threedim(0, 0, 0)
+# linefour = threedim(0.5, 0.5, 0.5)
 
 
-threedimdistance(lineone, linetwo)
+# threedimdistance(lineone, linetwo)
 
 
-listoflines = [lineone, linetwo, linethree, linefour]
-threedimmean(listoflines)
-threedimSD(listoflines)
+# listoflines = [lineone, linetwo, linethree, linefour]
+# threedimmean(listoflines)
+# threedimSD(listoflines)
