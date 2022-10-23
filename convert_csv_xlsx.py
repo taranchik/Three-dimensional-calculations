@@ -30,10 +30,17 @@ def xlsx_writer(data):
     column = 14
     tooth = None
 
+    cell_format_border = workbook.add_format()
+    cell_format_border_bold = workbook.add_format()
+    cell_format_border.set_border()
+    cell_format_border_bold.set_border()
+    cell_format_border_bold.set_bold()
+    worksheet.write(row, 13, '', cell_format_border)
+
     # Filling right-side table
     for j in range(1, 127):
         row += 1
-        worksheet.write(row, column, data[j][6])
+        worksheet.write(row, column, data[j][6], cell_format_border)
 
         if (j % 9 == 0):
             row = 3
@@ -41,11 +48,11 @@ def xlsx_writer(data):
                 tooth = str(column - 20) + 'P'
             else:
                 tooth = str((column - 21) * -1) + 'L'
-            worksheet.write(3, column, tooth)
+            worksheet.write(3, column, tooth, cell_format_border_bold)
             column += 1
 
         if (j < 10):
-            worksheet.write(j + 3, 13, j)
+            worksheet.write(j + 3, 13, j, cell_format_border_bold)
 
     workbook.close()
 
