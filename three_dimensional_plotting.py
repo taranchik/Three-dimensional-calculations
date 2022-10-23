@@ -3,6 +3,7 @@ from mpl_toolkits import mplot3d
 import numpy as np
 import matplotlib.pyplot as plt
 import xlrd
+import sys
 
 
 def threedim_plot(title, dataY):
@@ -25,8 +26,8 @@ def threedim_plot(title, dataY):
 
     ax.view_init(30, 0)
 
-    # plt.savefig('./src/img/' + title + '.png', bbox_inches='tight')
-    plt.show()
+    plt.savefig('./src/img/' + title + '.png', bbox_inches='tight')
+    # plt.show()
 
 
 def read_xlsx(path):
@@ -59,10 +60,18 @@ def read_xlsx(path):
     return thees
 
 
-thees_frames_start = read_xlsx("./src/xlsx/Kopia-pliku-rozgrupowanie.xlsx")
-thees_frames_three_months = read_xlsx("./src/xlsx/3mU.xlsx")
-thees_frames_six_months = read_xlsx("./src/xlsx/6mU.xlsx")
+def main():
+    path = "./src/xlsx/"
+    format = ".xlsx"
 
-for key, _ in thees_frames_start.items():
-    threedim_plot('Upper Jaw - ' + key,
-                  (thees_frames_start[key], thees_frames_three_months[key], thees_frames_six_months[key]))
+    thees_frames_start = read_xlsx(path + sys.argv[1] + format)
+    thees_frames_three_months = read_xlsx(path + sys.argv[2] + format)
+    thees_frames_six_months = read_xlsx(path + sys.argv[3] + format)
+
+    for key, _ in thees_frames_start.items():
+        threedim_plot('Upper Jaw - ' + key,
+                      (thees_frames_start[key], thees_frames_three_months[key], thees_frames_six_months[key]))
+
+
+if __name__ == "__main__":
+    main()
