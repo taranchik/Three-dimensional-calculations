@@ -38,7 +38,7 @@ def xlsx_writer(data):
     worksheet.write(row, 13, '', cell_format_border)
 
     # Filling right-side table
-    for j in range(1, 127):
+    for j in range(1, len(data)):
         row += 1
         worksheet.write(row, column, data[j][6], cell_format_border)
 
