@@ -37,12 +37,22 @@ def xlsx_writer(data):
     cell_format_border_bold.set_bold()
     worksheet.write(row, 13, '', cell_format_border)
 
-    # Filling right-side table
-    for j in range(1, len(data)):
+    # Condition resolves whether there is a header in csv
+    if data[0][0] == "Element":
+        data_start_row = 1
+    else:
+        data_start_row = 0
+
+    row_number_counter = 1
+
+    # Print right-side table
+    for j in range(data_start_row, len(data)):
         row += 1
+        # print data
         worksheet.write(row, column, data[j][6], cell_format_border)
 
-        if (j % 9 == 0):
+        # print header and move to next column
+        if (row_number_counter % 9 == 0):
             row = 3
             if (column > 20):
                 tooth = str(column - 20) + 'P'
@@ -51,8 +61,12 @@ def xlsx_writer(data):
             worksheet.write(3, column, tooth, cell_format_border_bold)
             column += 1
 
-        if (j < 10):
-            worksheet.write(j + 3, 13, j, cell_format_border_bold)
+        # print row number
+        if (j != 0 and j < 10):
+            worksheet.write(j + 3, 13,
+                            j, cell_format_border_bold)
+
+        row_number_counter += 1
 
     workbook.close()
 
